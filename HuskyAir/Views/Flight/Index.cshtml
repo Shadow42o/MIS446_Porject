@@ -1,0 +1,93 @@
+﻿@model IEnumerable<HuskyAir.Models.Flight>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_PilotID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_PlaneID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_PatientID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DestinationInformation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfPassengers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FlightDuration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Distance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfFlight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeOfFlight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WeightOfLuggage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FuelUsed)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fk_PilotID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fk_PlaneID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fk_PatientID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DestinationInformation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfPassengers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlightDuration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Distance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfFlight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeOfFlight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WeightOfLuggage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FuelUsed)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FlightIDNumber }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FlightIDNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FlightIDNumber })
+        </td>
+    </tr>
+}
+
+</table>

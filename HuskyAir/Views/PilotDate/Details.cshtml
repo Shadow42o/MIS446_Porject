@@ -1,0 +1,50 @@
+﻿@model HuskyAir.Models.PilotDate
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PilotDate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fk_PilotIDNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fk_PilotIDNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fk_PlaneIDNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fk_PlaneIDNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDateAvailable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDateAvailable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDateAvailable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDateAvailable)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,106 @@
+﻿@model HuskyAir.Models.Flight
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Flight</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fk_PilotID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fk_PilotID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fk_PlaneID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fk_PlaneID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fk_PatientID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fk_PatientID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DestinationInformation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DestinationInformation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfPassengers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfPassengers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlightDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlightDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfFlight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfFlight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOfFlight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOfFlight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeightOfLuggage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeightOfLuggage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelUsed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelUsed)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FlightIDNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

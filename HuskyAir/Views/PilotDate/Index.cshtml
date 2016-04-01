@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HuskyAir.Models.PilotDate>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_PilotIDNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_PlaneIDNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDateAvailable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDateAvailable)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fk_PilotIDNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fk_PlaneIDNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDateAvailable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDateAvailable)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
