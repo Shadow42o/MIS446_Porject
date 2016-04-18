@@ -12,7 +12,7 @@ namespace HuskyAir.Controllers
 {
     public class PatientController : Controller
     {
-        private PatientOutsidePartyModels db = new PatientOutsidePartyModels();
+        private DBModelsMaster db = new DBModelsMaster();
 
         // GET: Patient
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace HuskyAir.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PatientIDNumber,Name,DOB,Address,City,State,ZipCode,PhoneNumber,EMailAddress,SpecialNeeds,InsuranceIDNumber")] Patient patient)
+        public ActionResult Create([Bind(Include = "PatientIDNumber,FirstName,LastName,DOB,Address,City,State,ZipCode,PhoneNumber,EMailAddress,SpecialNeeds,InsuranceIDNumber")] Patient patient)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace HuskyAir.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PatientIDNumber,Name,DOB,Address,City,State,ZipCode,PhoneNumber,EMailAddress,SpecialNeeds,InsuranceIDNumber")] Patient patient)
+        public ActionResult Edit([Bind(Include = "PatientIDNumber,FirstName,LastName,DOB,Address,City,State,ZipCode,PhoneNumber,EMailAddress,SpecialNeeds,InsuranceIDNumber")] Patient patient)
         {
             if (ModelState.IsValid)
             {

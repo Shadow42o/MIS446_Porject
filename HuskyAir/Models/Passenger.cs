@@ -9,31 +9,42 @@ namespace HuskyAir.Models
     [Table("Passenger")]
     public partial class Passenger
     {
-        [StringLength(10)]
-        public string PassengerID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Passenger()
+        {
+            FlightPassengers = new HashSet<FlightPassenger>();
+        }
 
-        [StringLength(10)]
-        public string Name { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int PassengerID { get; set; }
 
-        [StringLength(10)]
-        public string DOB { get; set; }
+        [StringLength(20)]
+        public string FirstName { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
+        public string LastName { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? DOB { get; set; }
+
+        [StringLength(20)]
         public string Address { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string City { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string State { get; set; }
 
-        [StringLength(10)]
-        public string ZipCode { get; set; }
+        public int? ZipCode { get; set; }
 
         [StringLength(10)]
         public string PhoneNumber { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string EMailAddress { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FlightPassenger> FlightPassengers { get; set; }
     }
 }

@@ -5,12 +5,31 @@
     {
         @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "")
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownCommonMenu">
+                        <li>@Html.ActionLink("Account", "", "")</li>
+                        <hr />
+                        <li>@Html.ActionLink("Manage Accounts [Admin Only]", "Index", "UserAccounts")</li>
+                    </ul>
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+        </div>
+
+        @*<ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Index", new { @id = "dropdownCommonMenu" } ) <!--class="dropdown -toggle" id="dropdownCommonMenu" data-toggle="dropdown"-->
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownCommonMenu">
+                    @Html.ActionLink("Account", "", "")
+                </ul> 
+                <!--<a href="#" class="dropdown-toggle" id="dropdownCommonMenu" data-toggle="dropdown"></a>-->
+                <!--@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })-->
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        </ul>
+        </ul>*@
     }
 }
 else

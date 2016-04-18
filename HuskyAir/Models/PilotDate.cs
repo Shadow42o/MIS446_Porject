@@ -8,19 +8,22 @@ namespace HuskyAir.Models
 
     public partial class PilotDate
     {
-        [StringLength(10)]
-        public string ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
 
-        [StringLength(10)]
-        public string fk_PilotIDNumber { get; set; }
+        public int? fk_PilotIDNumber { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string fk_PlaneIDNumber { get; set; }
 
-        [StringLength(10)]
-        public string StartDateAvailable { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? StartDateAvailable { get; set; }
 
-        [StringLength(10)]
-        public string EndDateAvailable { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? EndDateAvailable { get; set; }
+
+        public virtual Pilot Pilot { get; set; }
+
+        public virtual Plane Plane { get; set; }
     }
 }

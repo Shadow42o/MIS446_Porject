@@ -7,22 +7,23 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HuskyAir.Models;
+using HuskyAir.CustomAttributes;
 
 namespace HuskyAir.Controllers
 {
     public class OutsidePartiesController : Controller
     {
-        private OutsidePartyModels db = new OutsidePartyModels();
+        private DBModelsMaster db = new DBModelsMaster();
 
         // GET: OutsideParties
-        [Authorize]
+       [AuthorizeCookie("Admin")]
         public ActionResult Index()
         {
             return View(db.OutsideParties.ToList());
         }
 
         // GET: OutsideParties/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
@@ -60,7 +61,7 @@ namespace HuskyAir.Controllers
         }
 
         // GET: OutsideParties/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
@@ -91,7 +92,7 @@ namespace HuskyAir.Controllers
         }
 
         // GET: OutsideParties/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {

@@ -12,7 +12,7 @@ namespace HuskyAir.Controllers
 {
     public class InsuranceController : Controller
     {
-        private PatientOutsidePartyModels db = new PatientOutsidePartyModels();
+        private DBModelsMaster db = new DBModelsMaster();
 
         // GET: Insurance
         public ActionResult Index()

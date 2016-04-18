@@ -199,7 +199,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AccountControllerTest.cs" />
     <Compile Include="Controllers\CertificationController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\FlightController.cs" />
@@ -214,12 +213,14 @@
     <Compile Include="Controllers\PilotDateController.cs" />
     <Compile Include="Controllers\PlaneController.cs" />
     <Compile Include="Controllers\UserAccountsController.cs" />
+    <Compile Include="CustomAttributes\AuthorizeCookie.cs" />
     <Compile Include="Filters\RoleAttributes.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Certification.cs" />
+    <Compile Include="Models\DBModelsMaster.cs" />
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\FlightPassenger.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -227,17 +228,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OurDbContext.cs" />
     <Compile Include="Models\OutsideParty.cs" />
-    <Compile Include="Models\OutsidePartyModels.cs" />
     <Compile Include="Models\Passenger.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientOutsideParty.cs" />
-    <Compile Include="Models\PatientOutsidePartyModels.cs" />
     <Compile Include="Models\Pilot.cs" />
     <Compile Include="Models\PilotDate.cs" />
     <Compile Include="Models\Plane.cs" />
     <Compile Include="Models\UserAccount.cs" />
-    <Compile Include="Models\UserAccountModels.cs" />
-    <Compile Include="Models\UserAccount_OLD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -367,6 +364,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Certifications\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

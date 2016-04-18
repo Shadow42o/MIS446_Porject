@@ -8,15 +8,15 @@ namespace HuskyAir.Models
 
     public partial class Certification
     {
-        [StringLength(10)]
-        public string ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string fk_PilotIDNumber { get; set; }
+        public int fk_PilotIDNumber { get; set; }
 
         [Column("Certification")]
-        [StringLength(10)]
+        [StringLength(20)]
         public string Certification1 { get; set; }
+
+        public virtual Pilot Pilot { get; set; }
     }
 }

@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.WeightCapacity)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NNumber }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NNumber }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NNumber })
+            @Html.ActionLink("Edit", "Edit", new { id=item.NNumber.Trim() }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NNumber.Trim() }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NNumber.Trim() })
         </td>
     </tr>
 }

@@ -9,27 +9,45 @@ namespace HuskyAir.Models
     public partial class UserAccount
     {
         [Key]
-        [StringLength(10)]
-        public string UserId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int UserId { get; set; }
 
-        [StringLength(10)]
+        [Required]
+        [StringLength(20)]
         public string FirstName { get; set; }
 
-        [StringLength(10)]
+        [Required]
+        [StringLength(20)]
         public string LastName { get; set; }
 
-        [StringLength(10)]
+        [Required]
+        [StringLength(20)]
+        [RegularExpression(@"^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$", ErrorMessage = "Please Enter Correct Email Address")]
         public string Email { get; set; }
 
-        [StringLength(10)]
+        [Required]
+        [StringLength(20)]
         public string Username { get; set; }
 
-        [StringLength(10)]
+        [Required]
+        [StringLength(20)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [StringLength(10)]
+        [Required]
+        [StringLength(20)]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+
+        [StringLength(20)]
+        public string Role { get; set; }
+    }
+
+    public enum RoleList
+    {
+        Admin,
+        Pilot,
+        OutsideParty,
+        User
     }
 }

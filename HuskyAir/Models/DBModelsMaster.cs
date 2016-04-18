@@ -5,10 +5,10 @@ namespace HuskyAir.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class PatientOutsidePartyModels : DbContext
+    public partial class DBModelsMaster : DbContext
     {
-        public PatientOutsidePartyModels()
-            : base("name=HuskyAirDBModels")
+        public DBModelsMaster()
+            : base("name=DBModelsMaster")
         {
         }
 
@@ -23,35 +23,16 @@ namespace HuskyAir.Models
         public virtual DbSet<Pilot> Pilots { get; set; }
         public virtual DbSet<PilotDate> PilotDates { get; set; }
         public virtual DbSet<Plane> Planes { get; set; }
+        public virtual DbSet<UserAccount> UserAccounts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Certification>()
-                .Property(e => e.ID)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Certification>()
-                .Property(e => e.fk_PilotIDNumber)
-                .IsFixedLength();
-
             modelBuilder.Entity<Certification>()
                 .Property(e => e.Certification1)
                 .IsFixedLength();
 
             modelBuilder.Entity<Flight>()
-                .Property(e => e.FlightIDNumber)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Flight>()
-                .Property(e => e.fk_PilotID)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Flight>()
                 .Property(e => e.fk_PlaneID)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Flight>()
-                .Property(e => e.fk_PatientID)
                 .IsFixedLength();
 
             modelBuilder.Entity<Flight>()
@@ -71,36 +52,10 @@ namespace HuskyAir.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<Flight>()
-                .Property(e => e.DateOfFlight)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Flight>()
-                .Property(e => e.TimeOfFlight)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Flight>()
-                .Property(e => e.WeightOfLuggage)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Flight>()
-                .Property(e => e.FuelUsed)
-                .IsFixedLength();
-
-            modelBuilder.Entity<FlightPassenger>()
-                .Property(e => e.ID)
-                .IsFixedLength();
-
-            modelBuilder.Entity<FlightPassenger>()
-                .Property(e => e.fk_FlightID)
-                .IsFixedLength();
-
-            modelBuilder.Entity<FlightPassenger>()
-                .Property(e => e.fk_PassengerID)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Insurance>()
-                .Property(e => e.InsuranceIDNumber)
-                .IsFixedLength();
+                .HasMany(e => e.FlightPassengers)
+                .WithRequired(e => e.Flight)
+                .HasForeignKey(e => e.fk_FlightID)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Insurance>()
                 .Property(e => e.CompanyName)
@@ -119,20 +74,13 @@ namespace HuskyAir.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<Insurance>()
-                .Property(e => e.ZipCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Insurance>()
-                .Property(e => e.PhoneNumber)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Insurance>()
                 .Property(e => e.EMailAddress)
                 .IsFixedLength();
 
-            modelBuilder.Entity<OutsideParty>()
-                .Property(e => e.OutsidePartyIDNumber)
-                .IsFixedLength();
+            modelBuilder.Entity<Insurance>()
+                .HasMany(e => e.Patients)
+                .WithOptional(e => e.Insurance)
+                .HasForeignKey(e => e.fk_InsuranceIDNumber);
 
             modelBuilder.Entity<OutsideParty>()
                 .Property(e => e.Title)
@@ -151,17 +99,12 @@ namespace HuskyAir.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<OutsideParty>()
-                .Property(e => e.ZipCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<OutsideParty>()
                 .Property(e => e.PhoneNumber)
                 .IsFixedLength();
 
             modelBuilder.Entity<OutsideParty>()
                 .Property(e => e.EmailAddress)
-                .IsFixedLength()
-                .IsUnicode(false);
+                .IsFixedLength();
 
             modelBuilder.Entity<OutsideParty>()
                 .HasMany(e => e.PatientOutsideParties)
@@ -170,15 +113,11 @@ namespace HuskyAir.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Passenger>()
-                .Property(e => e.PassengerID)
+                .Property(e => e.FirstName)
                 .IsFixedLength();
 
             modelBuilder.Entity<Passenger>()
-                .Property(e => e.Name)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Passenger>()
-                .Property(e => e.DOB)
+                .Property(e => e.LastName)
                 .IsFixedLength();
 
             modelBuilder.Entity<Passenger>()
@@ -191,10 +130,6 @@ namespace HuskyAir.Models
 
             modelBuilder.Entity<Passenger>()
                 .Property(e => e.State)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Passenger>()
-                .Property(e => e.ZipCode)
                 .IsFixedLength();
 
             modelBuilder.Entity<Passenger>()
@@ -205,16 +140,17 @@ namespace HuskyAir.Models
                 .Property(e => e.EMailAddress)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Passenger>()
+                .HasMany(e => e.FlightPassengers)
+                .WithOptional(e => e.Passenger)
+                .HasForeignKey(e => e.fk_PassengerID);
+
             modelBuilder.Entity<Patient>()
-                .Property(e => e.PatientIDNumber)
+                .Property(e => e.FirstName)
                 .IsFixedLength();
 
             modelBuilder.Entity<Patient>()
-                .Property(e => e.Name)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Patient>()
-                .Property(e => e.DOB)
+                .Property(e => e.LastName)
                 .IsFixedLength();
 
             modelBuilder.Entity<Patient>()
@@ -227,14 +163,6 @@ namespace HuskyAir.Models
 
             modelBuilder.Entity<Patient>()
                 .Property(e => e.State)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Patient>()
-                .Property(e => e.ZipCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Patient>()
-                .Property(e => e.PhoneNumber)
                 .IsFixedLength();
 
             modelBuilder.Entity<Patient>()
@@ -246,36 +174,21 @@ namespace HuskyAir.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<Patient>()
-                .Property(e => e.InsuranceIDNumber)
-                .IsFixedLength();
+                .HasMany(e => e.Flights)
+                .WithOptional(e => e.Patient)
+                .HasForeignKey(e => e.fk_PatientID);
 
             modelBuilder.Entity<Patient>()
                 .HasMany(e => e.PatientOutsideParties)
                 .WithOptional(e => e.Patient)
                 .HasForeignKey(e => e.fk_PatientIDNumber);
 
-            modelBuilder.Entity<PatientOutsideParty>()
-                .Property(e => e.ID)
-                .IsFixedLength();
-
-            modelBuilder.Entity<PatientOutsideParty>()
-                .Property(e => e.fk_PatientIDNumber)
-                .IsFixedLength();
-
-            modelBuilder.Entity<PatientOutsideParty>()
-                .Property(e => e.fk_OutsidePartyIDNumber)
+            modelBuilder.Entity<Pilot>()
+                .Property(e => e.FirstName)
                 .IsFixedLength();
 
             modelBuilder.Entity<Pilot>()
-                .Property(e => e.PilotIDNumber)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Pilot>()
-                .Property(e => e.Name)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Pilot>()
-                .Property(e => e.DOB)
+                .Property(e => e.LastName)
                 .IsFixedLength();
 
             modelBuilder.Entity<Pilot>()
@@ -291,10 +204,6 @@ namespace HuskyAir.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<Pilot>()
-                .Property(e => e.ZipCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Pilot>()
                 .Property(e => e.PhoneNumber)
                 .IsFixedLength();
 
@@ -303,31 +212,28 @@ namespace HuskyAir.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<Pilot>()
-                .Property(e => e.TotalHours)
-                .IsFixedLength();
+                .HasMany(e => e.Certifications)
+                .WithRequired(e => e.Pilot)
+                .HasForeignKey(e => e.fk_PilotIDNumber)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Pilot>()
-                .Property(e => e.AverageRating)
-                .IsFixedLength();
+                .HasMany(e => e.Flights)
+                .WithOptional(e => e.Pilot)
+                .HasForeignKey(e => e.fk_PilotID);
 
-            modelBuilder.Entity<PilotDate>()
-                .Property(e => e.ID)
-                .IsFixedLength();
+            modelBuilder.Entity<Pilot>()
+                .HasMany(e => e.PilotDates)
+                .WithOptional(e => e.Pilot)
+                .HasForeignKey(e => e.fk_PilotIDNumber);
 
-            modelBuilder.Entity<PilotDate>()
-                .Property(e => e.fk_PilotIDNumber)
-                .IsFixedLength();
+            modelBuilder.Entity<Pilot>()
+                .HasMany(e => e.Planes)
+                .WithOptional(e => e.Pilot)
+                .HasForeignKey(e => e.fk_PilotIDNumber);
 
             modelBuilder.Entity<PilotDate>()
                 .Property(e => e.fk_PlaneIDNumber)
-                .IsFixedLength();
-
-            modelBuilder.Entity<PilotDate>()
-                .Property(e => e.StartDateAvailable)
-                .IsFixedLength();
-
-            modelBuilder.Entity<PilotDate>()
-                .Property(e => e.EndDateAvailable)
                 .IsFixedLength();
 
             modelBuilder.Entity<Plane>()
@@ -335,19 +241,7 @@ namespace HuskyAir.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<Plane>()
-                .Property(e => e.fk_PilotIDNumber)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Plane>()
                 .Property(e => e.Type)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Plane>()
-                .Property(e => e.NumberOfEngines)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Plane>()
-                .Property(e => e.NumberOfPassengers)
                 .IsFixedLength();
 
             modelBuilder.Entity<Plane>()
@@ -355,7 +249,41 @@ namespace HuskyAir.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<Plane>()
-                .Property(e => e.WeightCapacity)
+                .HasMany(e => e.Flights)
+                .WithOptional(e => e.Plane)
+                .HasForeignKey(e => e.fk_PlaneID);
+
+            modelBuilder.Entity<Plane>()
+                .HasMany(e => e.PilotDates)
+                .WithOptional(e => e.Plane)
+                .HasForeignKey(e => e.fk_PlaneIDNumber);
+
+            modelBuilder.Entity<UserAccount>()
+                .Property(e => e.FirstName)
+                .IsFixedLength();
+
+            modelBuilder.Entity<UserAccount>()
+                .Property(e => e.LastName)
+                .IsFixedLength();
+
+            modelBuilder.Entity<UserAccount>()
+                .Property(e => e.Email)
+                .IsFixedLength();
+
+            modelBuilder.Entity<UserAccount>()
+                .Property(e => e.Username)
+                .IsFixedLength();
+
+            modelBuilder.Entity<UserAccount>()
+                .Property(e => e.Password)
+                .IsFixedLength();
+
+            modelBuilder.Entity<UserAccount>()
+                .Property(e => e.ConfirmPassword)
+                .IsFixedLength();
+
+            modelBuilder.Entity<UserAccount>()
+                .Property(e => e.Role)
                 .IsFixedLength();
         }
     }

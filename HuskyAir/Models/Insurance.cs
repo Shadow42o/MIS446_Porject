@@ -9,29 +9,36 @@ namespace HuskyAir.Models
     [Table("Insurance")]
     public partial class Insurance
     {
-        [Key]
-        [StringLength(10)]
-        public string InsuranceIDNumber { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Insurance()
+        {
+            Patients = new HashSet<Patient>();
+        }
 
-        [StringLength(10)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int InsuranceIDNumber { get; set; }
+
+        [StringLength(20)]
         public string CompanyName { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string Address { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string City { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string State { get; set; }
 
-        [StringLength(10)]
-        public string ZipCode { get; set; }
+        public int? ZipCode { get; set; }
 
-        [StringLength(10)]
-        public string PhoneNumber { get; set; }
+        public int? PhoneNumber { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string EMailAddress { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Patient> Patients { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace HuskyAir.Controllers
 {
     public class PatientOutsidePartyController : Controller
     {
-        private PatientOutsidePartyModels db = new PatientOutsidePartyModels();
+        private DBModelsMaster db = new DBModelsMaster();
 
         // GET: PatientOutsideParty
         public ActionResult Index()
@@ -40,7 +40,7 @@ namespace HuskyAir.Controllers
         public ActionResult Create()
         {
             ViewBag.fk_OutsidePartyIDNumber = new SelectList(db.OutsideParties, "OutsidePartyIDNumber", "Title");
-            ViewBag.fk_PatientIDNumber = new SelectList(db.Patients, "PatientIDNumber", "Name");
+            ViewBag.fk_PatientIDNumber = new SelectList(db.Patients, "PatientIDNumber", "FirstName", "LastName");
             return View();
         }
 

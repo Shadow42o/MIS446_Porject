@@ -9,14 +9,15 @@ namespace HuskyAir.Models
     [Table("FlightPassenger")]
     public partial class FlightPassenger
     {
-        [StringLength(10)]
-        public string ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string fk_FlightID { get; set; }
+        public int fk_FlightID { get; set; }
 
-        [StringLength(10)]
-        public string fk_PassengerID { get; set; }
+        public int? fk_PassengerID { get; set; }
+
+        public virtual Flight Flight { get; set; }
+
+        public virtual Passenger Passenger { get; set; }
     }
 }

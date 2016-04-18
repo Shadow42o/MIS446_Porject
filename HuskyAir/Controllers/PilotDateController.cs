@@ -12,7 +12,7 @@ namespace HuskyAir.Controllers
 {
     public class PilotDateController : Controller
     {
-        private PatientOutsidePartyModels db = new PatientOutsidePartyModels();
+        private DBModelsMaster db = new DBModelsMaster();
 
         // GET: PilotDate
         public ActionResult Index()
@@ -21,7 +21,7 @@ namespace HuskyAir.Controllers
         }
 
         // GET: PilotDate/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
@@ -59,7 +59,7 @@ namespace HuskyAir.Controllers
         }
 
         // GET: PilotDate/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
@@ -90,7 +90,7 @@ namespace HuskyAir.Controllers
         }
 
         // GET: PilotDate/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
@@ -107,7 +107,7 @@ namespace HuskyAir.Controllers
         // POST: PilotDate/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             PilotDate pilotDate = db.PilotDates.Find(id);
             db.PilotDates.Remove(pilotDate);

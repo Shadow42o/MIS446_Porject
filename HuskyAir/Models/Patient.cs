@@ -12,42 +12,48 @@ namespace HuskyAir.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Patient()
         {
+            Flights = new HashSet<Flight>();
             PatientOutsideParties = new HashSet<PatientOutsideParty>();
         }
 
         [Key]
-        [StringLength(10)]
-        public string PatientIDNumber { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int PatientIDNumber { get; set; }
 
-        [StringLength(10)]
-        public string Name { get; set; }
+        [StringLength(20)]
+        public string FirstName { get; set; }
 
-        [StringLength(10)]
-        public string DOB { get; set; }
+        [StringLength(20)]
+        public string LastName { get; set; }
 
-        [StringLength(10)]
+        [Column(TypeName = "date")]
+        public DateTime? DOB { get; set; }
+
+        [StringLength(20)]
         public string Address { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string City { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string State { get; set; }
 
-        [StringLength(10)]
-        public string ZipCode { get; set; }
+        public int? ZipCode { get; set; }
 
-        [StringLength(10)]
-        public string PhoneNumber { get; set; }
+        public int? PhoneNumber { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string EMailAddress { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string SpecialNeeds { get; set; }
 
-        [StringLength(10)]
-        public string InsuranceIDNumber { get; set; }
+        public int? fk_InsuranceIDNumber { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Flight> Flights { get; set; }
+
+        public virtual Insurance Insurance { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientOutsideParty> PatientOutsideParties { get; set; }

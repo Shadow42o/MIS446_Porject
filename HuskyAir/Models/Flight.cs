@@ -9,41 +9,51 @@ namespace HuskyAir.Models
     [Table("Flight")]
     public partial class Flight
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Flight()
+        {
+            FlightPassengers = new HashSet<FlightPassenger>();
+        }
+
         [Key]
-        [StringLength(10)]
-        public string FlightIDNumber { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int FlightIDNumber { get; set; }
 
-        [StringLength(10)]
-        public string fk_PilotID { get; set; }
+        public int? fk_PilotID { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string fk_PlaneID { get; set; }
 
-        [StringLength(10)]
-        public string fk_PatientID { get; set; }
+        public int? fk_PatientID { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string DestinationInformation { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string NumberOfPassengers { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string FlightDuration { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string Distance { get; set; }
 
-        [StringLength(10)]
-        public string DateOfFlight { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? DateOfFlight { get; set; }
 
-        [StringLength(10)]
-        public string TimeOfFlight { get; set; }
+        public TimeSpan? TimeOfFlight { get; set; }
 
-        [StringLength(10)]
-        public string WeightOfLuggage { get; set; }
+        public int? WeightOfLuggage { get; set; }
 
-        [StringLength(10)]
-        public string FuelUsed { get; set; }
+        public int? FuelUsed { get; set; }
+
+        public virtual Patient Patient { get; set; }
+
+        public virtual Pilot Pilot { get; set; }
+
+        public virtual Plane Plane { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FlightPassenger> FlightPassengers { get; set; }
     }
 }

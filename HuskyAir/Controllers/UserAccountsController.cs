@@ -8,12 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using HuskyAir.Models;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace HuskyAir.Controllers
 {
     public class UserAccountsController : Controller
     {
-        private UserAccountModels db = new UserAccountModels();
+        private DBModelsMaster db = new DBModelsMaster();
 
         // GET: UserAccounts
         public ActionResult Index()
@@ -50,10 +52,25 @@ namespace HuskyAir.Controllers
             var usr = db.UserAccounts.Where(u => u.Username == user.Username && u.Password == user.Password).FirstOrDefault();
             if (usr != null)
             {
-                FormsAuthentication.SetAuthCookie(usr.Username.ToString(), false);
+                string role = "admin,member";
+                //FormsAuthentication.SetAuthCookie(usr.Username.ToString(), false);
                 Session["UserId"] = usr.UserId.ToString();
                 Session["Username"] = usr.Username.ToString();
-                return RedirectToAction("LoggedIn");
+                Session["Roles"] = role;
+
+                FormsAuthentication.SetAuthCookie(usr.Username, false);
+
+                //var claims = new List<Claim>();
+                //claims.Add(new Claim(ClaimTypes.Name, usr.Username.ToString()));
+                //claims.Add(new Claim(ClaimTypes.Role, usr.Role.ToString()));
+                //var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+                //var ctx = Request.GetOwinContext();
+                //var authenticationManager = ctx.Authentication;
+                //authenticationManager = ctx.Authentication;
+
+                //return RedirectToAction("Index");
+                
+                return RedirectToAction("Index");
             }
             else
             {
@@ -79,11 +96,6 @@ namespace HuskyAir.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
-
-
-
-
 
         // GET: UserAccounts/Details/5
         public ActionResult Details(string id)
@@ -124,7 +136,7 @@ namespace HuskyAir.Controllers
         }
 
         // GET: UserAccounts/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {

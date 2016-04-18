@@ -16,28 +16,27 @@ namespace HuskyAir.Models
         }
 
         [Key]
-        [StringLength(10)]
-        public string OutsidePartyIDNumber { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int OutsidePartyIDNumber { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string Title { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string Address { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string City { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string State { get; set; }
 
-        [StringLength(10)]
-        public string ZipCode { get; set; }
+        public int? ZipCode { get; set; }
 
         [StringLength(10)]
         public string PhoneNumber { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string EmailAddress { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

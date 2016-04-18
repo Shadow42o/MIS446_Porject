@@ -9,26 +9,37 @@ namespace HuskyAir.Models
     [Table("Plane")]
     public partial class Plane
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Plane()
+        {
+            Flights = new HashSet<Flight>();
+            PilotDates = new HashSet<PilotDate>();
+        }
+
         [Key]
-        [StringLength(10)]
+        [StringLength(20)]
         public string NNumber { get; set; }
 
-        [StringLength(10)]
-        public string fk_PilotIDNumber { get; set; }
+        public int? fk_PilotIDNumber { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string Type { get; set; }
 
-        [StringLength(10)]
-        public string NumberOfEngines { get; set; }
+        public int? NumberOfEngines { get; set; }
 
-        [StringLength(10)]
-        public string NumberOfPassengers { get; set; }
+        public int? NumberOfPassengers { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string CurrentLocation { get; set; }
 
-        [StringLength(10)]
-        public string WeightCapacity { get; set; }
+        public int? WeightCapacity { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Flight> Flights { get; set; }
+
+        public virtual Pilot Pilot { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PilotDate> PilotDates { get; set; }
     }
 }
