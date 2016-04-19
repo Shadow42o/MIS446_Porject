@@ -213,7 +213,7 @@
     <Compile Include="Controllers\PilotDateController.cs" />
     <Compile Include="Controllers\PlaneController.cs" />
     <Compile Include="Controllers\UserAccountsController.cs" />
-    <Compile Include="CustomAttributes\AuthorizeCookie.cs" />
+    <Compile Include="Filters\AuthorizeCookie.cs" />
     <Compile Include="Filters\RoleAttributes.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
