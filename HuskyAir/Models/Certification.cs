@@ -8,7 +8,8 @@ namespace HuskyAir.Models
 
     public partial class Certification
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public int fk_PilotIDNumber { get; set; }

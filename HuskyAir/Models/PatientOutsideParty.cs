@@ -9,7 +9,8 @@ namespace HuskyAir.Models
     [Table("PatientOutsideParty")]
     public partial class PatientOutsideParty
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public int? fk_PatientIDNumber { get; set; }

@@ -9,7 +9,8 @@ namespace HuskyAir.Models
     [Table("FlightPassenger")]
     public partial class FlightPassenger
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public int fk_FlightID { get; set; }

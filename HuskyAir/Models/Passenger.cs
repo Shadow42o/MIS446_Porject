@@ -15,33 +15,34 @@ namespace HuskyAir.Models
             FlightPassengers = new HashSet<FlightPassenger>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PassengerID { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string FirstName { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string LastName { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? DOB { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string Address { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string City { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string State { get; set; }
 
         public int? ZipCode { get; set; }
 
-        [StringLength(10)]
+        [StringLength(255)]
         public string PhoneNumber { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string EMailAddress { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

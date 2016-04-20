@@ -9,6 +9,8 @@ namespace HuskyAir.Models
     [Table("Plane")]
     public partial class Plane
     {
+        private string trim_Nnumber = string.Empty;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Plane()
         {
@@ -17,19 +19,23 @@ namespace HuskyAir.Models
         }
 
         [Key]
-        [StringLength(20)]
-        public string NNumber { get; set; }
+        [StringLength(255)]
+        public string NNumber
+        {
+            get { return this.trim_Nnumber; }
+            set { this.trim_Nnumber = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
+        }
 
         public int? fk_PilotIDNumber { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string Type { get; set; }
 
         public int? NumberOfEngines { get; set; }
 
         public int? NumberOfPassengers { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string CurrentLocation { get; set; }
 
         public int? WeightCapacity { get; set; }

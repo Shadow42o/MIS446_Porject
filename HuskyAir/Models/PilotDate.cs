@@ -8,12 +8,13 @@ namespace HuskyAir.Models
 
     public partial class PilotDate
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public int? fk_PilotIDNumber { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string fk_PlaneIDNumber { get; set; }
 
         [Column(TypeName = "date")]

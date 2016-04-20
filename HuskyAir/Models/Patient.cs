@@ -17,35 +17,35 @@ namespace HuskyAir.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PatientIDNumber { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string FirstName { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string LastName { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? DOB { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string Address { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string City { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string State { get; set; }
 
         public int? ZipCode { get; set; }
 
         public int? PhoneNumber { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string EMailAddress { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string SpecialNeeds { get; set; }
 
         public int? fk_InsuranceIDNumber { get; set; }

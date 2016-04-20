@@ -16,26 +16,26 @@ namespace HuskyAir.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FlightIDNumber { get; set; }
 
         public int? fk_PilotID { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string fk_PlaneID { get; set; }
 
         public int? fk_PatientID { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string DestinationInformation { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string NumberOfPassengers { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string FlightDuration { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string Distance { get; set; }
 
         [Column(TypeName = "date")]

@@ -19,34 +19,34 @@ namespace HuskyAir.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PilotIDNumber { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string FirstName { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string LastName { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? DOB { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string Address { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string City { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string State { get; set; }
 
         public int? ZipCode { get; set; }
 
-        [StringLength(10)]
+        [StringLength(255)]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string EMailAddress { get; set; }
 
         public int? TotalHours { get; set; }

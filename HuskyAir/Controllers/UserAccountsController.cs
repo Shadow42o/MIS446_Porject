@@ -30,7 +30,7 @@ namespace HuskyAir.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register([Bind(Include = "UserId,FirstName,LastName,Email,Username,Password,ConfirmPassword")] UserAccount userAccount)
+        public ActionResult Register([Bind(Include = "UserId,FirstName,LastName,Email,Username,Password,ConfirmPassword,Role")] UserAccount userAccount)
         {
             if (ModelState.IsValid)
             {
@@ -53,22 +53,12 @@ namespace HuskyAir.Controllers
             if (usr != null)
             {
                 string role = "admin,member";
-                //FormsAuthentication.SetAuthCookie(usr.Username.ToString(), false);
+
                 Session["UserId"] = usr.UserId.ToString();
                 Session["Username"] = usr.Username.ToString();
                 Session["Roles"] = role;
 
                 FormsAuthentication.SetAuthCookie(usr.Username, false);
-
-                //var claims = new List<Claim>();
-                //claims.Add(new Claim(ClaimTypes.Name, usr.Username.ToString()));
-                //claims.Add(new Claim(ClaimTypes.Role, usr.Role.ToString()));
-                //var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-                //var ctx = Request.GetOwinContext();
-                //var authenticationManager = ctx.Authentication;
-                //authenticationManager = ctx.Authentication;
-
-                //return RedirectToAction("Index");
                 
                 return RedirectToAction("Index");
             }
@@ -98,7 +88,7 @@ namespace HuskyAir.Controllers
         }
 
         // GET: UserAccounts/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
@@ -123,7 +113,7 @@ namespace HuskyAir.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,FirstName,LastName,Email,Username,Password,ConfirmPassword")] UserAccount userAccount)
+        public ActionResult Create([Bind(Include = "UserId,FirstName,LastName,Email,Username,Password,ConfirmPassword,Role")] UserAccount userAccount)
         {
             if (ModelState.IsValid)
             {
@@ -155,7 +145,7 @@ namespace HuskyAir.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,Email,Username,Password,ConfirmPassword")] UserAccount userAccount)
+        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,Email,Username,Password,ConfirmPassword,Role")] UserAccount userAccount)
         {
             if (ModelState.IsValid)
             {
@@ -167,7 +157,7 @@ namespace HuskyAir.Controllers
         }
 
         // GET: UserAccounts/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
@@ -184,7 +174,7 @@ namespace HuskyAir.Controllers
         // POST: UserAccounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             UserAccount userAccount = db.UserAccounts.Find(id);
             db.UserAccounts.Remove(userAccount);

@@ -16,7 +16,7 @@ namespace HuskyAir.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OutsidePartyIDNumber { get; set; }
 
         [StringLength(20)]

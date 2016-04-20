@@ -68,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Role", new SelectList(Enum.GetValues(typeof(RoleList))), "Select Role", new { @class = "form-control" })
+                @Html.DropDownList("Role", new SelectList(Enum.GetValues(typeof(RoleList))), Model.Role, new { @class = "form-control" })
             </div>
         </div>
 
