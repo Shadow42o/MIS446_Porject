@@ -15,7 +15,7 @@ namespace HuskyAir.Models
         public int fk_PilotIDNumber { get; set; }
 
         [Column("Certification")]
-        [StringLength(20)]
+        [StringLength(255)]
         public string Certification1 { get; set; }
 
         public virtual Pilot Pilot { get; set; }

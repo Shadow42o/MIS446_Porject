@@ -16,7 +16,7 @@ namespace HuskyAir.Controllers
         private DBModelsMaster db = new DBModelsMaster();
 
         // GET: OutsideParties
-       [AuthorizeCookie("Admin")]
+        [AuthorizeCookie("Admin")]
         public ActionResult Index()
         {
             return View(db.OutsideParties.ToList());
@@ -25,10 +25,6 @@ namespace HuskyAir.Controllers
         // GET: OutsideParties/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             OutsideParty outsideParty = db.OutsideParties.Find(id);
             if (outsideParty == null)
             {
@@ -63,10 +59,6 @@ namespace HuskyAir.Controllers
         // GET: OutsideParties/Edit/5
         public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             OutsideParty outsideParty = db.OutsideParties.Find(id);
             if (outsideParty == null)
             {
@@ -94,10 +86,6 @@ namespace HuskyAir.Controllers
         // GET: OutsideParties/Delete/5
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             OutsideParty outsideParty = db.OutsideParties.Find(id);
             if (outsideParty == null)
             {

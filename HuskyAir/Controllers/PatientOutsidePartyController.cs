@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HuskyAir.Models;
+using HuskyAir.Filters;
 
 namespace HuskyAir.Controllers
 {
@@ -15,6 +16,7 @@ namespace HuskyAir.Controllers
         private DBModelsMaster db = new DBModelsMaster();
 
         // GET: PatientOutsideParty
+        [AuthorizeCookie("Admin")]
         public ActionResult Index()
         {
             var patientOutsideParties = db.PatientOutsideParties.Include(p => p.OutsideParty).Include(p => p.Patient);
@@ -24,10 +26,6 @@ namespace HuskyAir.Controllers
         // GET: PatientOutsideParty/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             PatientOutsideParty patientOutsideParty = db.PatientOutsideParties.Find(id);
             if (patientOutsideParty == null)
             {
@@ -66,10 +64,6 @@ namespace HuskyAir.Controllers
         // GET: PatientOutsideParty/Edit/5
         public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             PatientOutsideParty patientOutsideParty = db.PatientOutsideParties.Find(id);
             if (patientOutsideParty == null)
             {
@@ -101,10 +95,6 @@ namespace HuskyAir.Controllers
         // GET: PatientOutsideParty/Delete/5
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             PatientOutsideParty patientOutsideParty = db.PatientOutsideParties.Find(id);
             if (patientOutsideParty == null)
             {

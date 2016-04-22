@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HuskyAir.Models;
+using HuskyAir.Filters;
 
 namespace HuskyAir.Controllers
 {
@@ -15,6 +16,7 @@ namespace HuskyAir.Controllers
         private DBModelsMaster db = new DBModelsMaster();
 
         // GET: Flight
+        [AuthorizeCookie("Admin")]
         public ActionResult Index()
         {
             return View(db.Flights.ToList());
@@ -23,10 +25,6 @@ namespace HuskyAir.Controllers
         // GET: Flight/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Flight flight = db.Flights.Find(id);
             if (flight == null)
             {
@@ -61,10 +59,6 @@ namespace HuskyAir.Controllers
         // GET: Flight/Edit/5
         public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Flight flight = db.Flights.Find(id);
             if (flight == null)
             {
@@ -92,10 +86,6 @@ namespace HuskyAir.Controllers
         // GET: Flight/Delete/5
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Flight flight = db.Flights.Find(id);
             if (flight == null)
             {

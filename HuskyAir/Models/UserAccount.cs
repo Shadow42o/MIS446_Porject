@@ -55,6 +55,7 @@ namespace HuskyAir.Models
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string Password
         {

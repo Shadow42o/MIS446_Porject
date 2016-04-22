@@ -10,6 +10,7 @@ using System.Web.Security;
 using HuskyAir.Models;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
+using HuskyAir.Filters;
 
 namespace HuskyAir.Controllers
 {
@@ -18,6 +19,7 @@ namespace HuskyAir.Controllers
         private DBModelsMaster db = new DBModelsMaster();
 
         // GET: UserAccounts
+        [AuthorizeCookie("Admin")]
         public ActionResult Index()
         {
             return View(db.UserAccounts.ToList());
@@ -90,10 +92,6 @@ namespace HuskyAir.Controllers
         // GET: UserAccounts/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             UserAccount userAccount = db.UserAccounts.Find(id);
             if (userAccount == null)
             {
@@ -128,10 +126,6 @@ namespace HuskyAir.Controllers
         // GET: UserAccounts/Edit/5
         public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             UserAccount userAccount = db.UserAccounts.Find(id);
             if (userAccount == null)
             {
@@ -159,10 +153,6 @@ namespace HuskyAir.Controllers
         // GET: UserAccounts/Delete/5
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             UserAccount userAccount = db.UserAccounts.Find(id);
             if (userAccount == null)
             {
