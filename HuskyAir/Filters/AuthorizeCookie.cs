@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace HuskyAir.CustomAttributes
+namespace HuskyAir.Filters
 {
     public class AuthorizeCookie : AuthorizeAttribute
     {
