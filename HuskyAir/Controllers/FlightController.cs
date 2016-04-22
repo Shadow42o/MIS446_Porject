@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HuskyAir.Models;
-using HuskyAir.CustomAttributes;
 
 namespace HuskyAir.Controllers
 {
@@ -16,7 +15,6 @@ namespace HuskyAir.Controllers
         private DBModelsMaster db = new DBModelsMaster();
 
         // GET: Flight
-        [AuthorizeCookie("Admin")]
         public ActionResult Index()
         {
             return View(db.Flights.ToList());

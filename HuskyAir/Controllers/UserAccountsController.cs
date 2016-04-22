@@ -10,7 +10,6 @@ using System.Web.Security;
 using HuskyAir.Models;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
-using HuskyAir.CustomAttributes;
 
 namespace HuskyAir.Controllers
 {
@@ -19,7 +18,6 @@ namespace HuskyAir.Controllers
         private DBModelsMaster db = new DBModelsMaster();
 
         // GET: UserAccounts
-        [AuthorizeCookie("Admin")]
         public ActionResult Index()
         {
             return View(db.UserAccounts.ToList());
