@@ -84,4 +84,12 @@ namespace HuskyAir.Models
         OutsideParty,
         User
     }
+
+    public enum RegisterList
+    {
+        Admin,
+        Pilot,
+        OutsideParty,
+        User
+    }
 }

@@ -79,7 +79,7 @@ namespace HuskyAir.Controllers
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Index", "Home");
             }
         }
 
