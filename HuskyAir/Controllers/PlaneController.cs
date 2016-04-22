@@ -16,7 +16,7 @@ namespace HuskyAir.Controllers
         private DBModelsMaster db = new DBModelsMaster();
 
         // GET: Plane
-        [AuthorizeCookie("Admin")]
+        [AuthorizeCookie("Admin", "Pilot")]
         public ActionResult Index()
         {
             return View(db.Planes.ToList());
