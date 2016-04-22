@@ -87,7 +87,6 @@ namespace HuskyAir.Models
 
     public enum RegisterList
     {
-        Admin,
         Pilot,
         OutsideParty,
         User
