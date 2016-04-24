@@ -32,6 +32,7 @@ namespace HuskyAir.Models
         public string LastName { get; set; }
 
         [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
         [Column(TypeName = "date")]
         public DateTime? DOB { get; set; }
 
