@@ -104,7 +104,7 @@ namespace HuskyAir.Controllers
         // POST: Patient/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Patient patient = db.Patients.Find(id);
             db.Patients.Remove(patient);
