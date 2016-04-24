@@ -21,11 +21,11 @@ namespace HuskyAir.Controllers
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                return View(db.Pilot.Where(m => m.FirstName.Contains(searchString) || m.LastName.Contains(searchString)));
+                return View(db.Pilots.Where(m => m.FirstName.Contains(searchString) || m.LastName.Contains(searchString)));
             }
             else
             {
-                return View(db.Pilot.OrderBy(m => m.PilotIDNumber));
+                return View(db.Pilots.OrderBy(m => m.PilotIDNumber));
             }
         }
 
