@@ -17,9 +17,16 @@ namespace HuskyAir.Controllers
 
         // GET: Patient
         [AuthorizeCookie("Admin")]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Patients.ToList());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                return View(db.Patients.Where(m => m.FirstName.Contains(searchString) || m.LastName.Contains(searchString)));
+            }
+            else
+            {
+                return View(db.Patients.OrderBy(m => m.PatientIDNumber));
+            }
         }
 
         // GET: Patient/Details/5

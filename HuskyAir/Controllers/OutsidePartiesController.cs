@@ -17,9 +17,16 @@ namespace HuskyAir.Controllers
 
         // GET: OutsideParties
         [AuthorizeCookie("Admin")]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.OutsideParties.ToList());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                return View(db.OutsideParties.Where(m => m.Title.Contains(searchString)));
+            }
+            else
+            {
+                return View(db.OutsideParties.OrderBy(m => m.OutsidePartyIDNumber));
+            }
         }
 
         // GET: OutsideParties/Details/5

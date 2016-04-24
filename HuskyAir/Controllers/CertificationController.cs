@@ -17,9 +17,15 @@ namespace HuskyAir.Controllers
 
         // GET: Certification
         [AuthorizeCookie("Admin", "Pilot")]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Certifications.ToList());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                return View(db.Certifications.Where(m => m.Pilot.LastName.Contains(searchString) || m.Pilot.LastName.Contains(searchString)));
+            }else
+            {
+                return View(db.Certifications.OrderBy(m => m.Pilot.PilotIDNumber));
+            }
         }
 
         // GET: Certification/Details/5
@@ -48,9 +54,15 @@ namespace HuskyAir.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Certifications.Add(certification);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Certifications.Add(certification);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }catch
+                {
+                    //if something goes wrong
+                }
             }
 
             return View(certification);

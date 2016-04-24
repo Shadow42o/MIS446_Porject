@@ -19,6 +19,7 @@ namespace HuskyAir.Models
         }
 
         [Key]
+        [Display(Name = "N-number")]
         [StringLength(255)]
         public string NNumber
         {
@@ -26,18 +27,24 @@ namespace HuskyAir.Models
             set { this.trim_Nnumber = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
         }
 
+        [Display(Name = "Pilot ID")]
         public int? fk_PilotIDNumber { get; set; }
 
+        [Display(Name = "Type")]
         [StringLength(255)]
         public string Type { get; set; }
 
+        [Display(Name = "Engine Number")]
         public int? NumberOfEngines { get; set; }
 
+        [Display(Name = "Number of Passengers")]
         public int? NumberOfPassengers { get; set; }
 
+        [Display(Name = "Current Location")]
         [StringLength(255)]
         public string CurrentLocation { get; set; }
 
+        [Display(Name = "Weight Capacity")]
         public int? WeightCapacity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

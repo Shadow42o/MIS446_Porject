@@ -1,18 +1,28 @@
 ﻿@model IEnumerable<HuskyAir.Models.Plane>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Plane Information";
 }
 
-<h2>Index</h2>
+<h2>Plane Information</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by N-number: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.fk_PilotIDNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Type)
@@ -36,6 +46,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.fk_PilotIDNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type)

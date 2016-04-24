@@ -17,9 +17,16 @@ namespace HuskyAir.Controllers
 
         // GET: Passenger
         [AuthorizeCookie("Admin")]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Passengers.ToList());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                return View(db.Passengers.Where(m => m.FirstName .Contains(searchString) || m.LastName.Contains(searchString)));
+            }
+            else
+            {
+                return View(db.Passengers.OrderBy(m => m.PassengerID));
+            }
         }
 
         // GET: Passenger/Details/5

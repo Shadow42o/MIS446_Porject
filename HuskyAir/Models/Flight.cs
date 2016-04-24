@@ -16,35 +16,47 @@ namespace HuskyAir.Models
         }
 
         [Key]
+        [Display(Name = "Flight ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FlightIDNumber { get; set; }
 
+        [Display(Name = "Pilot ID")]
         public int? fk_PilotID { get; set; }
 
+        [Display(Name = "Plane ID")]
         [StringLength(255)]
         public string fk_PlaneID { get; set; }
 
+        [Display(Name = "Patient ID")]
         public int? fk_PatientID { get; set; }
 
+        [Display(Name = "Destination")]
         [StringLength(255)]
         public string DestinationInformation { get; set; }
 
+        [Display(Name = "Number of Passengers")]
         [StringLength(255)]
         public string NumberOfPassengers { get; set; }
 
+        [Display(Name = "Flight Duration")]
         [StringLength(255)]
         public string FlightDuration { get; set; }
 
+        [Display(Name = "Distance")]
         [StringLength(255)]
         public string Distance { get; set; }
 
+        [Display(Name = "Date of Flight")]
         [Column(TypeName = "date")]
         public DateTime? DateOfFlight { get; set; }
 
+        [Display(Name = "Time of Flight")]
         public TimeSpan? TimeOfFlight { get; set; }
 
+        [Display(Name = "Luggage Weight")]
         public int? WeightOfLuggage { get; set; }
 
+        [Display(Name = "Fuel Used")]
         public int? FuelUsed { get; set; }
 
         public virtual Patient Patient { get; set; }

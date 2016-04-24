@@ -9,10 +9,23 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fk_PilotIDNumber)
+            @Html.DisplayNameFor(model => model.Pilot.PilotIDNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pilot.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pilot.LastName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Certification1)
@@ -23,7 +36,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.fk_PilotIDNumber)
+            @Html.DisplayFor(modelItem => item.Pilot.PilotIDNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pilot.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pilot.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Certification1)

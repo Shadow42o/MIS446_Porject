@@ -17,9 +17,16 @@ namespace HuskyAir.Controllers
 
         // GET: Insurance
         [AuthorizeCookie("Admin")]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Insurances.ToList());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                return View(db.Insurances.Where(m => m.CompanyName.Contains(searchString)));
+            }
+            else
+            {
+                return View(db.Insurances.OrderBy(m => m.InsuranceIDNumber));
+            }
         }
 
         // GET: Insurance/Details/5

@@ -1,21 +1,21 @@
 ﻿@model HuskyAir.Models.Passenger
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Passenger Information | Details";
 }
 
-<h2>Details</h2>
+<h2>Passenger Information | Details</h2>
 
 <div>
     <h4>Passenger</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.LastName)
         </dd>
 
         <dt>

@@ -15,12 +15,13 @@ namespace HuskyAir.Models
         private string trim_Password = string.Empty;
         private string trim_ConfirmPass = string.Empty;
 
-
         [Key]
+        [Display(Name = "UserID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
         [Required]
+        [Display(Name = "First Name")]
         [StringLength(255)]
         public string FirstName
         {
@@ -29,6 +30,7 @@ namespace HuskyAir.Models
         }
 
         [Required]
+        [Display(Name = "Last Name")]
         [StringLength(255)]
         public string LastName
         {
@@ -37,6 +39,7 @@ namespace HuskyAir.Models
         }
 
         [Required]
+        [Display(Name = "Email")]
         [StringLength(255)]
         [RegularExpression(@"^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$", ErrorMessage = "Please Enter a Correct Email Address")]
         public string Email
@@ -46,6 +49,7 @@ namespace HuskyAir.Models
         }
 
         [Required]
+        [Display(Name = "User Name")]
         [StringLength(255)]
         public string Username
         {
@@ -54,8 +58,8 @@ namespace HuskyAir.Models
         }
 
         [Required]
-        [StringLength(255)]
         [Display(Name = "Password")]
+        [StringLength(255)]
         [DataType(DataType.Password)]
         public string Password
         {
@@ -64,6 +68,7 @@ namespace HuskyAir.Models
         }
 
         [Required]
+        [Display(Name = "Confirm Password")]
         [StringLength(255)]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage ="Passwords do not match")]

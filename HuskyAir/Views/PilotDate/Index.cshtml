@@ -1,14 +1,21 @@
 ﻿@model IEnumerable<HuskyAir.Models.PilotDate>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pilot Availability";
 }
 
-<h2>Index</h2>
+<h2>Pilot Availability</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
