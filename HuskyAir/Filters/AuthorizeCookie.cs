@@ -8,6 +8,7 @@ using System.Web.Security;
 
 namespace HuskyAir.Filters
 {
+    //Custom Authorization Check
     public class AuthorizeCookie : AuthorizeAttribute
     {
         DBModelsMaster context = new DBModelsMaster(); // my entity  
@@ -21,7 +22,7 @@ namespace HuskyAir.Filters
             bool authorize = false;
             foreach (var role in allowedroles)
             {
-                var user = context.UserAccounts.Where(m => m.Username == httpContext.User.Identity.Name/* getting user form current context */ && m.Role == role ); // checking active users with allowed roles.  
+                var user = context.UserAccounts.Where(m => m.Username == httpContext.User.Identity.Name/* getting user from current context */ && m.Role == role ); // checking active users with allowed roles.  
                 if (user.Count() > 0)
                 {
                     authorize = true; /* return true if Entity has current user(active) with specific role */
