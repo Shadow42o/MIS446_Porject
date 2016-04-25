@@ -8,6 +8,8 @@ namespace HuskyAir.Models
 
     public partial class Certification
     {
+        private string trim_Certification = string.Empty;
+
         [Key]
         [Display(Name = "ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,7 +22,11 @@ namespace HuskyAir.Models
         [Column("Certification")]
         [Display(Name = "Certification")]
         [StringLength(255)]
-        public string Certification1 { get; set; }
+        public string Certification1
+        {
+            get { return this.trim_Certification; }
+            set { this.trim_Certification = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
+        }
 
         [ForeignKey("PilotIDNumber")]
         public virtual Pilot Pilot { get; set; }

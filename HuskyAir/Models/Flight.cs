@@ -9,6 +9,12 @@ namespace HuskyAir.Models
     [Table("Flight")]
     public partial class Flight
     {
+        private string trim_Nnumber = string.Empty;
+        private string trim_DestinationInfo = string.Empty;
+        private string trim_NumPassengers = string.Empty;
+        private string trim_FlightDuration = string.Empty;
+        private string trim_Distance = string.Empty;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Flight()
         {
@@ -24,27 +30,42 @@ namespace HuskyAir.Models
         public int? fk_PilotID { get; set; }
 
         [Display(Name = "Plane ID")]
-        [StringLength(255)]
-        public string fk_PlaneID { get; set; }
+        public int? fk_PlaneID { get; set; }
 
         [Display(Name = "Patient ID")]
         public int? fk_PatientID { get; set; }
 
         [Display(Name = "Destination")]
         [StringLength(255)]
-        public string DestinationInformation { get; set; }
+        public string DestinationInformation
+        {
+            get { return this.trim_DestinationInfo; }
+            set { this.trim_DestinationInfo = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
+        }
 
         [Display(Name = "Number of Passengers")]
         [StringLength(255)]
-        public string NumberOfPassengers { get; set; }
+        public string NumberOfPassengers
+        {
+            get { return this.trim_NumPassengers; }
+            set { this.trim_NumPassengers = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
+        }
 
         [Display(Name = "Flight Duration")]
         [StringLength(255)]
-        public string FlightDuration { get; set; }
+        public string FlightDuration
+        {
+            get { return this.trim_FlightDuration; }
+            set { this.trim_FlightDuration = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
+        }
 
         [Display(Name = "Distance")]
         [StringLength(255)]
-        public string Distance { get; set; }
+        public string Distance
+        {
+            get { return this.trim_Distance; }
+            set { this.trim_Distance = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
+        }
 
         [Display(Name = "Date of Flight")]
         [DataType(DataType.Date)]
@@ -52,6 +73,7 @@ namespace HuskyAir.Models
         public DateTime? DateOfFlight { get; set; }
 
         [Display(Name = "Time of Flight")]
+        [DataType(DataType.Time)]
         public TimeSpan? TimeOfFlight { get; set; }
 
         [Display(Name = "Luggage Weight")]

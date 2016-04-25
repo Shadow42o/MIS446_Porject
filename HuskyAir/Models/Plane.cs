@@ -10,6 +10,8 @@ namespace HuskyAir.Models
     public partial class Plane
     {
         private string trim_Nnumber = string.Empty;
+        private string trim_Type = string.Empty;
+        private string trim_Current = string.Empty;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Plane()
@@ -19,20 +21,23 @@ namespace HuskyAir.Models
         }
 
         [Key]
+        [Display(Name = "ID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+
         [Display(Name = "N-number")]
-        [StringLength(255)]
-        public string NNumber
-        {
-            get { return this.trim_Nnumber; }
-            set { this.trim_Nnumber = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
-        }
+        public int NNumber { get; set; }
 
         [Display(Name = "Pilot ID")]
         public int? fk_PilotIDNumber { get; set; }
 
         [Display(Name = "Type")]
         [StringLength(255)]
-        public string Type { get; set; }
+        public string Type
+        {
+            get { return this.trim_Type; }
+            set { this.trim_Type = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
+        }
 
         [Display(Name = "Engine Number")]
         public int? NumberOfEngines { get; set; }
@@ -42,7 +47,11 @@ namespace HuskyAir.Models
 
         [Display(Name = "Current Location")]
         [StringLength(255)]
-        public string CurrentLocation { get; set; }
+        public string CurrentLocation
+        {
+            get { return this.trim_Current; }
+            set { this.trim_Current = (string.IsNullOrEmpty(value)) ? value : value.Trim(); }
+        }
 
         [Display(Name = "Weight Capacity")]
         public int? WeightCapacity { get; set; }

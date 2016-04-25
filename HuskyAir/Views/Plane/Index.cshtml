@@ -9,13 +9,6 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm())
-{
-    <p>
-        Find by N-number: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}
 <table class="table">
     <tr>
         <th>
@@ -66,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.WeightCapacity)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NNumber.Trim() }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NNumber.Trim() }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NNumber.Trim() })
+            @Html.ActionLink("Edit", "Edit", new { id=item.NNumber }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NNumber })
         </td>
     </tr>
 }

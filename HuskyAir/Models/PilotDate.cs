@@ -17,14 +17,15 @@ namespace HuskyAir.Models
         public int? fk_PilotIDNumber { get; set; }
 
         [Display(Name = "Plane ID")]
-        [StringLength(255)]
-        public string fk_PlaneIDNumber { get; set; }
+        public int? fk_PlaneIDNumber { get; set; }
 
         [Display(Name = "Start Availibility")]
+        [DataType(DataType.Date)]
         [Column(TypeName = "date")]
         public DateTime? StartDateAvailable { get; set; }
 
         [Display(Name = "End Availability")]
+        [DataType(DataType.Date)]
         [Column(TypeName = "date")]
         public DateTime? EndDateAvailable { get; set; }
 

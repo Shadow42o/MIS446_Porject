@@ -9,20 +9,10 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.fk_PilotIDNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fk_PlaneIDNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StartDateAvailable)
@@ -37,9 +27,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.fk_PilotIDNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fk_PlaneIDNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartDateAvailable)

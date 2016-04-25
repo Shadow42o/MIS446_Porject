@@ -19,23 +19,12 @@ namespace HuskyAir.Controllers
         [AuthorizeCookie("Admin", "Pilot")]
         public ActionResult Index(string searchString)
         {
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                return View(db.Planes.Where(m => m.NNumber.Contains(searchString)));
-            }
-            else
-            {
-                return View(db.Planes.OrderBy(m => m.NNumber));
-            }
+            return View(db.Planes.OrderBy(m => m.NNumber));
         }
 
         // GET: Plane/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Plane plane = db.Planes.Find(id);
             if (plane == null)
             {
@@ -59,21 +48,24 @@ namespace HuskyAir.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Planes.Add(plane);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Planes.Add(plane);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Pilot ID not found.");
+                }
             }
 
             return View(plane);
         }
 
         // GET: Plane/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Plane plane = db.Planes.Find(id);
             if (plane == null)
             {
@@ -91,20 +83,23 @@ namespace HuskyAir.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(plane).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(plane).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }catch
+                {
+                    ModelState.AddModelError("", "Pilot ID not found.");
+                }
+                
             }
             return View(plane);
         }
 
         // GET: Plane/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Plane plane = db.Planes.Find(id);
             if (plane == null)
             {
@@ -116,7 +111,7 @@ namespace HuskyAir.Controllers
         // POST: Plane/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Plane plane = db.Planes.Find(id);
             db.Planes.Remove(plane);

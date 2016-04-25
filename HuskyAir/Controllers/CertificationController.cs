@@ -21,7 +21,7 @@ namespace HuskyAir.Controllers
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                return View(db.Certifications.Where(m => m.Pilot.LastName.Contains(searchString) || m.Pilot.LastName.Contains(searchString)));
+                return View(db.Certifications.Where(m => m.Pilot.FirstName.Contains(searchString) || m.Pilot.LastName.Contains(searchString)));
             }else
             {
                 return View(db.Certifications.OrderBy(m => m.Pilot.PilotIDNumber));

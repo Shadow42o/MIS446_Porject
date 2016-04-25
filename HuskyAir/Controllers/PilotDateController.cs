@@ -48,9 +48,16 @@ namespace HuskyAir.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.PilotDates.Add(pilotDate);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.PilotDates.Add(pilotDate);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "ID Not Found");
+                }
             }
 
             return View(pilotDate);
@@ -76,9 +83,16 @@ namespace HuskyAir.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pilotDate).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(pilotDate).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "ID Not Found");
+                }
             }
             return View(pilotDate);
         }

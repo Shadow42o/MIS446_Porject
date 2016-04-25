@@ -32,8 +32,7 @@ namespace HuskyAir.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<Flight>()
-                .Property(e => e.fk_PlaneID)
-                .IsFixedLength();
+                .Property(e => e.fk_PlaneID);
 
             modelBuilder.Entity<Flight>()
                 .Property(e => e.DestinationInformation)
@@ -233,12 +232,10 @@ namespace HuskyAir.Models
                 .HasForeignKey(e => e.fk_PilotIDNumber);
 
             modelBuilder.Entity<PilotDate>()
-                .Property(e => e.fk_PlaneIDNumber)
-                .IsFixedLength();
+                .Property(e => e.fk_PlaneIDNumber);
 
             modelBuilder.Entity<Plane>()
-                .Property(e => e.NNumber)
-                .IsFixedLength();
+                .Property(e => e.NNumber);
 
             modelBuilder.Entity<Plane>()
                 .Property(e => e.Type)

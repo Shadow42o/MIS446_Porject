@@ -49,7 +49,7 @@
             @Html.DisplayNameFor(model => model.SpecialNeeds)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fk_InsuranceIDNumber)
+            @Html.DisplayNameFor(model => model.Insurance.CompanyName)
         </th>
         <th></th>
     </tr>
@@ -87,7 +87,7 @@
             @Html.DisplayFor(modelItem => item.SpecialNeeds)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.fk_InsuranceIDNumber)
+            @Html.DisplayFor(modelItem => item.Insurance.CompanyName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PatientIDNumber }) |
