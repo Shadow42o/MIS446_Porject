@@ -12,6 +12,7 @@ using HuskyAir.Models;
 
 namespace HuskyAir.Controllers
 {
+    //Mostly un-used, used for part of the login system
     [Authorize]
     public class AccountController : Controller
     {
