@@ -338,7 +338,6 @@
     <Content Include="Views\UserAccounts\Index.cshtml" />
     <Content Include="Views\UserAccounts\Register.cshtml" />
     <Content Include="Views\UserAccounts\Login.cshtml" />
-    <Content Include="Views\UserAccounts\LoggedIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

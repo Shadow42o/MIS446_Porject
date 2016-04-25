@@ -51,13 +51,20 @@ namespace HuskyAir.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PatientIDNumber,FirstName,LastName,DOB,Address,City,State,ZipCode,PhoneNumber,EMailAddress,SpecialNeeds,InsuranceIDNumber")] Patient patient)
+        public ActionResult Create([Bind(Include = "PatientIDNumber,FirstName,LastName,DOB,Address,City,State,ZipCode,PhoneNumber,EMailAddress,SpecialNeeds,fk_InsuranceIDNumber")] Patient patient)
         {
             if (ModelState.IsValid)
             {
-                db.Patients.Add(patient);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Patients.Add(patient);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }catch
+                {
+                    ModelState.AddModelError("", "Insurance ID Not Found");
+                }
+                
             }
 
             return View(patient);
@@ -79,13 +86,19 @@ namespace HuskyAir.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PatientIDNumber,FirstName,LastName,DOB,Address,City,State,ZipCode,PhoneNumber,EMailAddress,SpecialNeeds,InsuranceIDNumber")] Patient patient)
+        public ActionResult Edit([Bind(Include = "PatientIDNumber,FirstName,LastName,DOB,Address,City,State,ZipCode,PhoneNumber,EMailAddress,SpecialNeeds,fk_InsuranceIDNumber")] Patient patient)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(patient).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(patient).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }catch
+                {
+                    ModelState.AddModelError("", "Insurance ID Not Found");
+                }
             }
             return View(patient);
         }

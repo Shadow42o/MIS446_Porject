@@ -62,6 +62,7 @@ namespace HuskyAir.Controllers
                 }catch
                 {
                     //if something goes wrong
+                    ModelState.AddModelError("", "Pilot ID not found.");
                 }
             }
 
@@ -88,9 +89,15 @@ namespace HuskyAir.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(certification).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(certification).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }catch
+                {
+                    ModelState.AddModelError("", "Pilot ID not found.");
+                }
             }
             return View(certification);
         }

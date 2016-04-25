@@ -19,13 +19,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fk_PilotID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fk_PlaneID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fk_PatientID)
+            @Html.DisplayNameFor(model => model.FlightIDNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DestinationInformation)
@@ -57,13 +51,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.fk_PilotID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fk_PlaneID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fk_PatientID)
+            @Html.DisplayFor(modelItem => item.FlightIDNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DestinationInformation)

@@ -47,6 +47,7 @@ namespace HuskyAir.Models
         public string Distance { get; set; }
 
         [Display(Name = "Date of Flight")]
+        [DataType(DataType.Date)]
         [Column(TypeName = "date")]
         public DateTime? DateOfFlight { get; set; }
 

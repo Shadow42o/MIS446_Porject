@@ -62,7 +62,7 @@ namespace HuskyAir.Controllers
 
                 FormsAuthentication.SetAuthCookie(usr.Username, false);
                 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
